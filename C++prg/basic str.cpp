@@ -7,5 +7,5 @@ int main(){
     int num;
     std ::cout<<"\n Enter number:";
     std::cin>>num;
-    std::cout<<"\n Numnber="<<num;
+    std::cout<<"\n Number="<<num;
 }
