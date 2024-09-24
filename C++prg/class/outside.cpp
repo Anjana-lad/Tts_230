@@ -3,7 +3,8 @@
 #define pi 3.14
 using namespace std;
 class Circle{
-    private:float radius,arr;
+    private:
+    float radius,arr;
     public:
     void get_r();
     int area();

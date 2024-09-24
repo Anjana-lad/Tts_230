@@ -16,6 +16,6 @@ class A{
 int main(){
     A a;
     a.show();
-    A::B ab;
-    ab.show();
+ A :: B ab;
+ ab.show();
 }
