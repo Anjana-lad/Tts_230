@@ -39,4 +39,3 @@ int main(){
   dp.get();
   dp.show();  
 }
-// wap of single inheritance having base class "vehicle" with data member color and max_speed and having derived class "car" having member numbers of doors.

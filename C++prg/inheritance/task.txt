@@ -1,0 +1,11 @@
+constructor:
+1. wAp to print fibonacci series using parametrized constructor.
+2. wap to multiply 3 numbers using constructor.
+3. wap to read and display employee details using nested class.
+4. wap to create mark_sheet of 5 student using constructor.
+
+Inheritance:
+1. wap of single inheritance having base class "vehicle" with data member color and max_speed and having derived class "car" having member numbers of doors.
+2. wap to read and print employee information using multiple inheritance.
+3. wap to having class name fruit with data_member to calculate number of fruits in a basket.
+ create 2 other classes apple and mango to calculate number of apples and mangoes in a basket print the n umber of fruits of each type and total number of fruits in a basket.
