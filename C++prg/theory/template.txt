@@ -11,7 +11,7 @@ template<parameter list><declaration
 File Handling:
    A collection of characters,text,programs or a set of related data is called a file.
 A file can be in any form. It can be a stream,which represents a sequences of bytes that flow inside /outside the program to carry out input/output operations in c++.
-a set of classes defines the file handling methods in the file i/o system in c++.all this functions are stored in <fstream.h> header file.
+a set of classes defines the file handling methods in the file i/o system in c++.all this functions are stored in <fstream> header file.
 file handling function in c++:
 open();
 close();
@@ -24,7 +24,7 @@ open a file
     file_stream object_file;
     object_file.open("path\filename.txt");
 close a file:
-    stream_object.close();  eg:ofile.close();    
+    stream_object.close();  eg:object_file.close();    
     
 Exception handling:
 An exception is a situation where a program produces an unexpected error during the execution
@@ -41,6 +41,6 @@ try{
     //code
     throw
 }
-catch (exception name excp 1){
+catch (exception name exe1){
     catch block
 }

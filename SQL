@@ -1,0 +1,94 @@
+mysql> create table customer(cid int primary key,name varchar(20) not null,mobile_no bigint unique,age int ,check(age>21));
+
+mysql> describe customer;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| cid       | int         | NO   | PRI | NULL    |       |
+| name      | varchar(20) | NO   |     | NULL    |       |
+| mobile_no | bigint      | YES  | UNI | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table customer add column city varchar(20);
+
+
+mysql> describe customer;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| cid       | int         | NO   | PRI | NULL    |       |
+| name      | varchar(20) | NO   |     | NULL    |       |
+| mobile_no | bigint      | YES  | UNI | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| city      | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
+mysql> alter table customer drop column city;
+
+mysql> describe customer;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| cid       | int         | NO   | PRI | NULL    |       |
+| name      | varchar(20) | NO   |     | NULL    |       |
+| mobile_no | bigint      | YES  | UNI | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
+
+mysql> alter table customer add column city varchar(20) after name;
+
+mysql> describe customer;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| cid       | int         | NO   | PRI | NULL    |       |
+| name      | varchar(20) | NO   |     | NULL    |       |
+| city      | varchar(20) | YES  |     | NULL    |       |
+| mobile_no | bigint      | YES  | UNI | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
+mysql> alter table customer modify city varchar(10);
+mysql> describe customer;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| cid       | int         | NO   | PRI | NULL    |       |
+| name      | varchar(20) | NO   |     | NULL    |       |
+| city      | varchar(10) | YES  |     | NULL    |       |
+| mobile_no | bigint      | YES  | UNI | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+mysql> create table payment(pay_id int primary key,
+cid int, foreign key(cid) references customer(cid), 
+amount int not null,
+mode varchar(10),
+payment_dt date);
+
+mysql> describe payment;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| pay_id     | int         | NO   | PRI | NULL    |       |
+| cid        | int         | YES  | MUL | NULL    |       |
+| amount     | int         | NO   |     | NULL    |       |
+| mode       | varchar(10) | YES  |     | NULL    |       |
+| payment_dt | date        | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+
+mysql> insert into customer values
+    (1,"Riya","Surat",7412369852,25),
+    (2,"Kuldeep","Kim",7856941236,32),
+    (3,"Sakshi","Vapi",8521479632,24);
+
+mysql> select * from customer;
++-----+---------+-------+------------+------+
+| cid | name    | city  | mobile_no  | age  |
++-----+---------+-------+------------+------+
+|   1 | Riya    | Surat | 7412369852 |   25 |
+|   2 | Kuldeep | Kim   | 7856941236 |   32 |
+|   3 | Sakshi  | Vapi  | 8521479632 |   24 |
++-----+---------+-------+------------+------+

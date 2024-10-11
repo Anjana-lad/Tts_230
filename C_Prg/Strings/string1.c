@@ -12,8 +12,8 @@ int main(){
     //gets(str1);
     fgets(str,20,stdin);
     fgets(str1,50,stdin);
-       printf("\n String1=%s",str);
-   printf("\n String2=%s",str1);
+    printf("\n String1=%s",str);
+    printf("\n String2=%s",str1);
     //string length:-
    //  printf("\n Length of str2=%d",strlen(str1));
     //string compare:=

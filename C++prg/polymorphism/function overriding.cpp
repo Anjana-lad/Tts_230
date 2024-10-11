@@ -3,7 +3,7 @@
 using namespace std;
 class A{
     public:
-   virtual void display(){
+    virtual void display(){
         cout<<"I am in class A"<<endl;
     }
 };
@@ -17,6 +17,6 @@ int main(){
     A *a;   // pointer of base class
     B b;  // object of child class
     a=&b;  // referencing  pointer to object;
-    a->display();
+    a->display();  
     b.display();
 }
