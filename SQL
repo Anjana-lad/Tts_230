@@ -37,7 +37,6 @@ mysql> describe customer;
 | age       | int         | YES  |     | NULL    |       |
 +-----------+-------------+------+-----+---------+-------+
 
-
 mysql> alter table customer add column city varchar(20) after name;
 
 mysql> describe customer;
@@ -92,3 +91,291 @@ mysql> select * from customer;
 |   2 | Kuldeep | Kim   | 7856941236 |   32 |
 |   3 | Sakshi  | Vapi  | 8521479632 |   24 |
 +-----+---------+-------+------------+------+
+
+mysql> select * from customer;
++-----+---------+-------+------------+------+
+| cid | name    | city  | mobile_no  | age  |
++-----+---------+-------+------------+------+
+|   1 | Riya    | Surat | 7412369852 |   25 |
+|   2 | Kuldeep | Kim   | 7856941236 |   32 |
+|   3 | Sakshi  | Vapi  | 8521479632 |   24 |
+|   4 | Deep    | Pune  | 9632147853 |   65 |
++-----+---------+-------+------------+------+
+4 rows in set (0.02 sec)
+
+mysql> select * from payment;
++--------+------+--------+------+------------+
+| pay_id | cid  | amount | mode | payment_dt |
++--------+------+--------+------+------------+
+|      1 |    1 |   2500 | Cash | 2021-05-07 |
++--------+------+--------+------+------------+
+1 row in set (0.01 sec)
+
+mysql> update customer set city="Valsad" where cid=2;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from customer;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   1 | Riya    | Surat  | 7412369852 |   25 |
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
+|   4 | Deep    | Pune   | 9632147853 |   65 |
++-----+---------+--------+------------+------+
+4 rows in set (0.00 sec)
+
+mysql> delete from customer where cid=4;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from customer;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   1 | Riya    | Surat  | 7412369852 |   25 |
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
++-----+---------+--------+------------+------+
+3 rows in set (0.00 sec)
+
+mysql> insert into customer values(4,"Deep","Pune",7412596382",62);
+    "> ;
+    "> ^C
+mysql> insert into customer values(4,"Deep","Pune",7412596382",62);
+    "> insert into customer values(4,"Deep","Pune",7412596382,62);
+    "> ;
+    "> ^C
+mysql> insert into customer values(4,"Deep","Pune",7412596382,62);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into customer values(5,"Dipika","Pune",7412596482,60);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from customer;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   1 | Riya    | Surat  | 7412369852 |   25 |
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
+|   4 | Deep    | Pune   | 7412596382 |   62 |
+|   5 | Dipika  | Pune   | 7412596482 |   60 |
++-----+---------+--------+------------+------+
+5 rows in set (0.00 sec)
+
+mysql> select distinct city from customer;
++--------+
+| city   |
++--------+
+| Surat  |
+| Valsad |
+| Vapi   |
+| Pune   |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from customer limit 3;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   1 | Riya    | Surat  | 7412369852 |   25 |
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
++-----+---------+--------+------------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from customer limit 3 offset 2;
++-----+--------+------+------------+------+
+| cid | name   | city | mobile_no  | age  |
++-----+--------+------+------------+------+
+|   3 | Sakshi | Vapi | 8521479632 |   24 |
+|   4 | Deep   | Pune | 7412596382 |   62 |
+|   5 | Dipika | Pune | 7412596482 |   60 |
++-----+--------+------+------------+------+
+3 rows in set (0.00 sec)
+
+
+mysql> select * from customer where age between 20 and 30;
++-----+--------+-------+------------+------+
+| cid | name   | city  | mobile_no  | age  |
++-----+--------+-------+------------+------+
+|   1 | Riya   | Surat | 7412369852 |   25 |
+|   3 | Sakshi | Vapi  | 8521479632 |   24 |
++-----+--------+-------+------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from customer where age between 32 and 62;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   4 | Deep    | Pune   | 7412596382 |   62 |
+|   5 | Dipika  | Pune   | 7412596482 |   60 |
++-----+---------+--------+------------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from customer where age not between 32 and 62;
++-----+--------+-------+------------+------+
+| cid | name   | city  | mobile_no  | age  |
++-----+--------+-------+------------+------+
+|   1 | Riya   | Surat | 7412369852 |   25 |
+|   3 | Sakshi | Vapi  | 8521479632 |   24 |
++-----+--------+-------+------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from customer where city="Surat" and  age =25;
++-----+------+-------+------------+------+
+| cid | name | city  | mobile_no  | age  |
++-----+------+-------+------------+------+
+|   1 | Riya | Surat | 7412369852 |   25 |
++-----+------+-------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from customer where city="Surat" and  age =52;
+Empty set (0.00 sec)
+
+mysql> select * from customer where city="Surat" or  age =62;
++-----+------+-------+------------+------+
+| cid | name | city  | mobile_no  | age  |
++-----+------+-------+------------+------+
+|   1 | Riya | Surat | 7412369852 |   25 |
+|   4 | Deep | Pune  | 7412596382 |   62 |
++-----+------+-------+------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from customer where not city="Surat" or  age =62;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
+|   4 | Deep    | Pune   | 7412596382 |   62 |
+|   5 | Dipika  | Pune   | 7412596482 |   60 |
++-----+---------+--------+------------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from customer where age>35;
++-----+--------+------+------------+------+
+| cid | name   | city | mobile_no  | age  |
++-----+--------+------+------------+------+
+|   4 | Deep   | Pune | 7412596382 |   62 |
+|   5 | Dipika | Pune | 7412596482 |   60 |
++-----+--------+------+------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from customer where age>=35;
++-----+--------+------+------------+------+
+| cid | name   | city | mobile_no  | age  |
++-----+--------+------+------------+------+
+|   4 | Deep   | Pune | 7412596382 |   62 |
+|   5 | Dipika | Pune | 7412596482 |   60 |
++-----+--------+------+------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from customer where age<=35;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   1 | Riya    | Surat  | 7412369852 |   25 |
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
++-----+---------+--------+------------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from customer where age<>35;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   1 | Riya    | Surat  | 7412369852 |   25 |
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
+|   4 | Deep    | Pune   | 7412596382 |   62 |
+|   5 | Dipika  | Pune   | 7412596482 |   60 |
++-----+---------+--------+------------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer where age<>25;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
+|   4 | Deep    | Pune   | 7412596382 |   62 |
+|   5 | Dipika  | Pune   | 7412596482 |   60 |
++-----+---------+--------+------------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from customer where age!=25;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
+|   4 | Deep    | Pune   | 7412596382 |   62 |
+|   5 | Dipika  | Pune   | 7412596482 |   60 |
++-----+---------+--------+------------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from customer where age Is null;
+Empty set (0.00 sec)
+
+mysql> select * from customer where age Is not null;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   1 | Riya    | Surat  | 7412369852 |   25 |
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
+|   4 | Deep    | Pune   | 7412596382 |   62 |
+|   5 | Dipika  | Pune   | 7412596482 |   60 |
++-----+---------+--------+------------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer order by name asc;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   4 | Deep    | Pune   | 7412596382 |   62 |
+|   5 | Dipika  | Pune   | 7412596482 |   60 |
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   1 | Riya    | Surat  | 7412369852 |   25 |
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
++-----+---------+--------+------------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer order by city desc
+    -> ;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   1 | Riya    | Surat  | 7412369852 |   25 |
+|   4 | Deep    | Pune   | 7412596382 |   62 |
+|   5 | Dipika  | Pune   | 7412596482 |   60 |
++-----+---------+--------+------------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer order by city ,age desc;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   4 | Deep    | Pune   | 7412596382 |   62 |
+|   5 | Dipika  | Pune   | 7412596482 |   60 |
+|   1 | Riya    | Surat  | 7412369852 |   25 |
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
++-----+---------+--------+------------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer order by name ,age desc;
++-----+---------+--------+------------+------+
+| cid | name    | city   | mobile_no  | age  |
++-----+---------+--------+------------+------+
+|   4 | Deep    | Pune   | 7412596382 |   62 |
+|   5 | Dipika  | Pune   | 7412596482 |   60 |
+|   2 | Kuldeep | Valsad | 7856941236 |   32 |
+|   1 | Riya    | Surat  | 7412369852 |   25 |
+|   3 | Sakshi  | Vapi   | 8521479632 |   24 |
++-----+---------+--------+------------+------+
